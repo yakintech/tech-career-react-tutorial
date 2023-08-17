@@ -1,10 +1,10 @@
-import OneWayBinding from "./jsxSample/OneWayBinding"
-import ChildComp from "./props/ChildComp"
+
+import StateArraySample2 from "./state/StateArraySample2"
 
 
 function App(){
     return <>
-        <ChildComp title="Kariyer Net" country="Türkiye"/>
+        <StateArraySample2/>
     </>
 }
 
