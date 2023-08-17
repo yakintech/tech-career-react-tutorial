@@ -977,11 +977,23 @@ function StateArraySample2() {
             var filteredProducts = products.filter(q => q.id != id);
             setproducts(filteredProducts)
         }
+    }
 
+    const searchByName = (value) => {
 
+       var filteredProducts = productsData.filter(q => q.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
+
+       setproducts(filteredProducts)
     }
 
     return (<>
+        <div>
+            <label htmlFor="">Search:  </label>
+            <input type='text' onChange={(e) => searchByName(e.target.value)} />
+        </div>
+
+        <hr />
+
         <button onClick={() => setproducts([])}>Clear All</button>
         <h1>Length: {products.length}</h1>
         <table className='w3-table'>
