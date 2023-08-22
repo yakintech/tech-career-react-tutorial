@@ -6,6 +6,8 @@ import Blog from "./routerSample/pages/Blog"
 import NotFound from "./routerSample/pages/NotFound"
 import ProductPage from "./effect/ProductPage"
 import AddProduct from "./effect/AddProduct"
+import SupplierPage from "./routerSample/pages/SupplierPage"
+import SupplierDetail from "./routerSample/pages/SupplierDetail"
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
                 <li><Link to='/contact'>Contact</Link></li>
                 <li><Link to='/blog'>Blog</Link></li>
                 <li><Link to='/addproduct'>Add Product</Link></li>
+                <li><Link to='/suppliers'>Suppliers</Link></li>
+
             </ul>
         </nav>
         <Routes>
@@ -28,6 +32,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/addproduct" element={<AddProduct />} />
+            <Route path="/suppliers" element={<SupplierPage />} />
+            <Route path="/suppliers/:id" element={<SupplierDetail />} />
             <Route path="*" element={<NotFound />} />
 
         </Routes>
