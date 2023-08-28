@@ -8,6 +8,7 @@ import ProductPage from "./effect/ProductPage"
 import AddProduct from "./effect/AddProduct"
 import SupplierPage from "./routerSample/pages/SupplierPage"
 import SupplierDetail from "./routerSample/pages/SupplierDetail"
+import CounterPage from "./routerSample/pages/CounterPage"
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
                 <li><Link to='/blog'>Blog</Link></li>
                 <li><Link to='/addproduct'>Add Product</Link></li>
                 <li><Link to='/suppliers'>Suppliers</Link></li>
+                <li><Link to='/counterpage'>Counter Page</Link></li>
+
 
             </ul>
         </nav>
@@ -34,6 +37,7 @@ function App() {
             <Route path="/addproduct" element={<AddProduct />} />
             <Route path="/suppliers" element={<SupplierPage />} />
             <Route path="/suppliers/:id" element={<SupplierDetail />} />
+            <Route path="/counterpage" element={<CounterPage />} />
             <Route path="*" element={<NotFound />} />
 
         </Routes>
