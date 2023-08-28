@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { cartContext } from '../context/CartContext';
 
 function AddProduct() {
 
@@ -8,12 +9,15 @@ function AddProduct() {
     const [unitsInStock, setunitsInStock] = useState(0);
     const [products, setproducts] = useState([]);
 
+
+    const { cart, setCart } = useContext(cartContext);
+
     useEffect(() => {
-        
+
         getProducts();
-    
+
     }, [])
-    
+
 
     const add = () => {
 
@@ -33,10 +37,34 @@ function AddProduct() {
 
     const getProducts = () => {
         axios.get('https://northwind.vercel.app/api/products')
-        .then(res => {
-            setproducts(res.data);
-        })
-    
+            .then(res => {
+                setproducts(res.data);
+            })
+
+    }
+
+    const addToCart = (item) => {
+
+        //eğer ürün daha önce eklenmemişse quantity 1 olarak diziye eklerim. Ürün eklenmişse quantity 1 artar
+
+        var productControl = cart.find(q => q.id == item.id);
+
+
+        if(productControl){
+            productControl.quantity = productControl.quantity + 1;
+            setCart([...cart]);
+        }
+        else{
+            var newCartItem = {
+                id: item.id,
+                name : item.name,
+                unitPrice: item.unitPrice,
+                quantity : 1
+            }
+
+            setCart([...cart, newCartItem]);
+        }
+
     }
 
 
@@ -60,7 +88,12 @@ function AddProduct() {
         <hr />
         <ul>
             {
-                products && products.map(item => <li>{item.name}</li>)
+                products && products.map(item => {
+                    return <>
+                        <li>{item.name} - {item.unitPrice.toFixed(2)}</li>
+                        <button onClick={() => addToCart(item)}>Add To Cart</button>
+                    </>
+                })
             }
         </ul>
     </>)
